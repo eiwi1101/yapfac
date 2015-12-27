@@ -1,0 +1,16 @@
+#!/usr/bin/ruby
+$: << 'lib'
+
+require 'yapfac'
+require 'json'
+
+s = Yapfac::Apache.new
+
+s.sites_available.each do |s, v|
+  puts "=" * 80
+  puts s
+  puts "-" * 80
+  puts v.to_s
+  puts "-" * 80
+  puts JSON.pretty_generate v.to_h
+end
