@@ -28,16 +28,20 @@ private
     scope = self
 
     @config_lines.each do |line|
+      # Enter Child Scope
       if line =~ /^<(\w+)\s*(.*)?>$/
         new_scope = Yapfac::Apache::Scope.new($1, $2, scope)
         scope.add_scope(new_scope)
         scope = new_scope
 
+      # Exit Child Scope
       elsif line =~ /^<\/#{scope.name}>$/
         scope = scope.parent
 
-      else
-        scope.add_directive(line)
+      # Add Directive
+      elsif line =~ /^(\w+)\s*(.*)$/
+        directive = Yapfac::Apache::Directive.new($1, $2)
+        scope.add_directive(directive)
       end
     end
   end

@@ -1,4 +1,5 @@
 # Load Apache deps
+require 'yapfac/apache/directive'
 require 'yapfac/apache/scope'
 require 'yapfac/apache/site'
 #require 'yapfac/apache/directive'
