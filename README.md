@@ -1,15 +1,13 @@
-# Yapfac
+# YAPFAC: Yet Another Parser for Apache Configuration
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/yapfac`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+YAPFAC provides a parser to read and write Apache configuration files. YAPFAC also provides a secure RESTful API for doing this remotely, providing seamless controll of a number of Apache servers.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'yapfac'
+gem 'yapfac', git: 'eiwi1101/yapfac'
 ```
 
 And then execute:
@@ -22,7 +20,17 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+local_server = Yapfac.new
+local_server.sites_available #=> ["000-default.conf", "something.conf"]
+
+begin
+  remote_server = Yapfac.new('some.host.example.com')
+  remote_server.a2ensite('000-default.conf')
+rescue Yapfac::ConnectionError => e
+  puts "Unable to connect to #{e.hostname}: #{e.message}"
+end
+```
 
 ## Development
 
@@ -32,7 +40,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/yapfac. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/eiwi1101/yapfac. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
 
 
 ## License
