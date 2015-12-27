@@ -1,5 +1,5 @@
 require "yapfac/version"
+require "yapfac/apache"
 
 module Yapfac
-  # Your code goes here...
 end
