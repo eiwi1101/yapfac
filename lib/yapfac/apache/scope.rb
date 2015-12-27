@@ -25,6 +25,15 @@ class  Scope
     @scopes.push(scope)
   end
 
+  def to_h
+    return({
+      name: @name,
+      params: @params,
+      directives: @directives.collect(&:to_h),
+      scopes: @scopes.collect(&:to_h)
+    })
+  end
+
   def to_s
     # TODO: Figure out a cleaner indentation method.
 

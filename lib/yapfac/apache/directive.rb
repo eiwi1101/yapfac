@@ -13,6 +13,13 @@ class  Directive
     "#{@name} #{@params.join(' ')}"
   end
 
+  def to_h
+    return ({
+      name: @name,
+      params: @params
+    })
+  end
+
 private
 
   def parse(params)
