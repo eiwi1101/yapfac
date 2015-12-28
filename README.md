@@ -18,6 +18,21 @@ Or install it yourself as:
 
     $ gem install yapfac
 
+## Configuration
+
+Before using Yapfac, configure the gem in an initializer or some other useful place. The following are the default configuration options.
+
+```ruby
+Yapfac.configure do |config|
+
+  # Apache Default Options
+  config.apache_path = "/etc/apache2"
+  config.sites_available_path = "sites-available"
+  config.sites_enabled_path = "sites-enabled"
+
+end
+```
+
 ## Usage
 
 ```ruby
