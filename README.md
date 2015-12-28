@@ -21,20 +21,32 @@ Or install it yourself as:
 ## Usage
 
 ```ruby
-local_server = Yapfac.new
-local_server.sites_available #=> ["000-default.conf", "something.conf"]
+default = Yapfac::Apache::Site.new("/etc/apache2/sites-available/000-default.conf")
+puts default.to_s #=> Converts the config back into Apache Config format.
+puts default.to_h #=> Converts the config into a hash.
 
-begin
-  remote_server = Yapfac.new('some.host.example.com')
-  remote_server.a2ensite('000-default.conf')
-rescue Yapfac::ConnectionError => e
-  puts "Unable to connect to #{e.hostname}: #{e.message}"
-end
+sites = Yapfac::Apache.sites_available
+puts sites.first.to_s #=> Dumps the configuration file for the first site in sites-available
+
+online = Yapfac::Apache.sites_enabled #=> Just reads the sites-enabled dir.
+
+### COMING SOON
+
+Yapfac::Apache.a2ensite  "example.com.conf" #=> Enables site
+Yapfac::Apache.a2dissite "000-default.conf" #=> Disables site
+
+# Self-explanatory
+Yapfac::Apache.reload
+Yapfac::Apache.restart
+
+Yapfac::Apache.a2ensite! "example.com.conf" #=> Enables site and reloads Apache. Same for ::a2dissite.
 ```
 
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake rspec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+
+For ease in testing, you can modify `bin/quicktest` to run through some real-world scenarios. (Currently, `bin/quicktest` requires apache2 to be installed.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
