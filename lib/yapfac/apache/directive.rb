@@ -10,7 +10,13 @@ class  Directive
   end
 
   def to_s
-    "#{@name} #{@params.join(' ')}"
+    "#{@name} #{@params.collect do |p|
+      if p =~ /\s/
+        "\"#{p}\""
+      else
+        p
+      end
+    end.join(' ')}"
   end
 
   def to_h

@@ -9,27 +9,15 @@ require 'yapfac/apache/site'
 module Yapfac
 class Apache
 
-  attr_reader :sites_available
-
   def initialize
-    @sites_available = get_sites
   end
 
-private
+  def self.sites_available
+    Dir[File.join(Yapfac.configuration.apache_path, Yapfac.configuration.sites_available_path, '*.conf')]
+  end
 
-  # Builds a list of Yapfac::Apache::Site objects based on
-  # the default Apache sites_available directory.
-  #
-  def get_sites
-    sites = Hash.new
-    files = Dir['/etc/apache2/sites-available/*.conf']
-    
-    files.each do |file|
-      name = File.basename(file, '.conf')
-      sites.store(name, Yapfac::Apache::Site.new(file))
-    end
-
-    return sites
+  def self.sites_enabled
+    Dir[File.join(Yapfac.configuration.apache_path, Yapfac.configuration.sites_enabled_path, '*.conf')]
   end
 
 end

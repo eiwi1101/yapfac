@@ -4,9 +4,8 @@ class  Site < Scope
 
   def initialize(filename)
     super()
-
+    @name = File.basename(filename, '.conf')
     @config_lines = read_file(filename)
-
     parse!
   end
 

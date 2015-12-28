@@ -40,7 +40,7 @@ class  Scope
     out = Array.new
     tab = @parent.nil? ? "" : "\t"
 
-    unless name.nil?
+    unless parent.nil?
       out << "<#{@name} #{@params.join(' ')}>"
     end
 
@@ -52,7 +52,7 @@ class  Scope
       out << @scopes.collect { |s| s.to_s.split("\n").collect { |v| v.prepend(tab) }.join("\n") }
     end
 
-    unless name.nil?
+    unless parent.nil?
       out << "</#{@name}>"
     end
 

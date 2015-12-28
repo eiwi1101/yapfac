@@ -4,11 +4,11 @@ $: << 'lib'
 require 'yapfac'
 require 'json'
 
-s = Yapfac::Apache.new
+Yapfac::Apache.sites_available.each do |site|
+  v = Yapfac::Apache::Site.new(site)
 
-s.sites_available.each do |s, v|
   puts "=" * 80
-  puts s
+  puts v.name
   puts "-" * 80
   puts v.to_s
   puts "-" * 80
