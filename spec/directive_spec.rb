@@ -21,21 +21,45 @@ describe Yapfac::Apache::Directive do
     end
   end
 
+  describe ":parse" do
+    context "when parsing 'Foo bar baz'" do
+      subject { Yapfac::Apache::Directive.parse("Foo bar baz") }
+      
+      describe "#name" do
+        it { expect(subject.name).to eq "Foo" }
+      end
+
+      describe "#params" do
+        it { expect(subject.params.count).to eq 2 }
+        it { expect(subject.params).to include("bar", "baz") }
+      end
+    end
+
+    context "with params: bar, baz" do
+      subject { Yapfac::Apache::Directive.parse("Foo", "bar baz") }
+
+      describe "#params" do
+        it { expect(subject.params.count).to eq 2 }
+        it { expect(subject.params).to include("bar", "baz") }
+      end
+    end
+
+    context "with quoted params: 'bar baz', qux, \"frobulate all\"" do
+      subject { Yapfac::Apache::Directive.parse("Foo", %q{'bar baz' qux "frobulate all"}) }
+
+      describe "#params" do
+        it { expect(subject.params.count).to eq 3 }
+        it { expect(subject.params).to include("bar baz", "qux", "frobulate all") }
+      end
+    end
+  end
+
   context "with params: bar, baz" do
-    subject { Yapfac::Apache::Directive.new("Foo", "bar baz") }
+    subject { Yapfac::Apache::Directive.new("Foo", "bar", "baz") }
 
     describe "#params" do
       it { expect(subject.params.count).to eq 2 }
       it { expect(subject.params).to include("bar", "baz") }
-    end
-  end
-
-  context "with quoted params: 'bar baz', qux, \"frobulate all\"" do
-    subject { Yapfac::Apache::Directive.new("Foo", %q{'bar baz' qux "frobulate all"}) }
-
-    describe "#params" do
-      it { expect(subject.params.count).to eq 3 }
-      it { expect(subject.params).to include("bar baz", "qux", "frobulate all") }
     end
   end
 

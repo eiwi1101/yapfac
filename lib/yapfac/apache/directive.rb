@@ -4,9 +4,14 @@ class  Directive
 
   attr_accessor :name, :params
 
-  def initialize(name, params = nil)
+  def initialize(name, *params)
     @name   = name
-    @params = parse(params)
+    @params = params
+  end
+
+  def self.parse(name, params = nil)
+    name, params = name.split /\s+/, 2 if params.nil?
+    return Yapfac::Apache::Directive.new(name, *parse_params(params))
   end
 
   def to_s
@@ -28,7 +33,7 @@ class  Directive
 
 private
 
-  def parse(params)
+  def self.parse_params(params = nil)
     return Array.new if params.nil?
 
     return params.
