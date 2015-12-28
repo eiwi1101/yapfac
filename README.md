@@ -10,7 +10,7 @@ YAPFAC provides a parser to read and write Apache configuration files. YAPFAC al
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'yapfac', git: 'eiwi1101/yapfac'
+gem 'yapfac'
 ```
 
 And then execute:
