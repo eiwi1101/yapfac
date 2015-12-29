@@ -5,7 +5,7 @@ require 'yapfac'
 require 'json'
 
 Yapfac::Apache.sites_available.each do |site|
-  v = Yapfac::Apache::Site.new(site)
+  v = Yapfac::Apache.load_site(site)
 
   puts "=" * 80
   puts v.name
