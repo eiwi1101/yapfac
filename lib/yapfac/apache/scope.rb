@@ -13,8 +13,12 @@ class  Scope
     @scopes     = Array.new
   end
 
-  def add_directive(line)
-    @directives.push(line)
+  def add_directive(directive, *params)
+    if directive.kind_of? Yapfac::Apache::Directive
+      @directives.push(directive)
+    else
+      @directives.push(Yapfac::Apache::Directive.new(directive, *params))
+    end
   end
 
   def add_scope(scope)

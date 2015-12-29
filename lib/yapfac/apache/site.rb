@@ -2,16 +2,18 @@ module Yapfac
 class  Apache
 class  Site < Scope
 
-  def initialize(filename)
-    super()
-    @name = File.basename(filename, '.conf')
-    @config_lines = read_file(filename)
-    parse!
+  def initialize(site_name)
+    super(site_name)
   end
 
-private
+  def self.load(filename)
+    s = Yapfac::Apache::Site.new(File.basename(filename, '.conf'))
+    s.load_file(filename)
+    s.parse!
+    return s
+  end
 
-  def read_file(filename)
+  def load_file(filename)
     lines = File.read(filename)
     lines.gsub!("\\\n", '')
 
@@ -20,7 +22,7 @@ private
     lines_a.reject! &:nil?
     lines_a.map     { |l| l.gsub! /\s+/, ' ' }
 
-    return lines_a
+    @config_lines = lines_a
   end
 
   def parse!
