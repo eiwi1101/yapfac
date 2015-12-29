@@ -24,5 +24,9 @@ module Yapfac
       @sites_available_path = "sites-available"
       @sites_enabled_path = "sites-enabled"
     end
+
+    def reset!
+      initialize
+    end
   end
 end
