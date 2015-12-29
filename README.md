@@ -3,6 +3,7 @@
 [![Gem Version](https://badge.fury.io/rb/yapfac.svg)](https://badge.fury.io/rb/yapfac)
 [![Build Status](https://travis-ci.org/eiwi1101/yapfac.svg)](https://travis-ci.org/eiwi1101/yapfac)
 [![Code Climate](https://codeclimate.com/github/eiwi1101/yapfac/badges/gpa.svg)](https://codeclimate.com/github/eiwi1101/yapfac)
+[![Test Coverage](https://codeclimate.com/github/eiwi1101/yapfac/badges/coverage.svg)](https://codeclimate.com/github/eiwi1101/yapfac/coverage)
 
 YAPFAC provides a parser to read and write Apache configuration files. YAPFAC also provides a secure RESTful API for doing this remotely, providing seamless controll of a number of Apache servers.
 
