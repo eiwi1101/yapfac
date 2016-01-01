@@ -22,4 +22,18 @@ describe Yapfac::Apache::Site do
     end
   end
 
+  context "new site" do
+    before do
+      @site = Yapfac::Apache::Site.new('000-default')
+      @site.add_scope Yapfac::Apache::Scope.new("VirtualHost", "*:80")
+      @site.add_directive "DocumentRoot", "/test"
+    end
+
+    describe '#to_s' do
+      subject { @site.to_s }
+      it { is_expected.to_not match /000-default/ }
+      it { is_expected.to match /<VirtualHost \*:80>/ }
+      it { is_expected.to match /DocumentRoot\s+\/test/ }
+    end
+  end
 end
