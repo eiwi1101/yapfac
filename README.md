@@ -45,21 +45,33 @@ default = Yapfac::Apache::Site.new("/etc/apache2/sites-available/000-default.con
 puts default.to_s #=> Converts the config back into Apache Config format.
 puts default.to_h #=> Converts the config into a hash.
 
-sites = Yapfac::Apache.sites_available
-puts sites.first.to_s #=> Dumps the configuration file for the first site in sites-available
+# This will dump all the sites available to your terminal
+# As the re-generated Apache config and JSON pretty format.
+#
+Yapfac::Apache.sites_available.each do |site|
+  v = Yapfac::Apache.load_site(site)
 
-online = Yapfac::Apache.sites_enabled #=> Just reads the sites-enabled dir.
+  puts "=" * 80
+  puts v.name
+  puts "-" * 80
+  puts v.to_s
+  puts "-" * 80
+  puts JSON.pretty_generate v.to_h
+end
 
-### COMING SOON
+# This will build and save a new basic site to your sites-available
+# directory.
+#
+s = Yapfac::Apache.new_site('001-example.com') do |site|
+  site.add_directive "DocumentRoot /var/www/example"
 
-Yapfac::Apache.a2ensite  "example.com.conf" #=> Enables site
-Yapfac::Apache.a2dissite "000-default.conf" #=> Disables site
+  site.add_scope "Directory", "/var/www/example" do |scope|
+    scope.add_directive "Order", "allow,deny"
+    scope.add_directive "Allow", "from", "all"
+  end
+end
 
-# Self-explanatory
-Yapfac::Apache.reload
-Yapfac::Apache.restart
-
-Yapfac::Apache.a2ensite! "example.com.conf" #=> Enables site and reloads Apache. Same for ::a2dissite.
+s.save #=> Writes output to sites-available
 ```
 
 ## Development
@@ -74,6 +86,10 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/eiwi1101/yapfac. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
 
+## Contact
+
+This gem is maintained by William Eisert [weisert@eisertdev.com](mailto:weisert@eisertdev.com).
+[![Buy me a coffee at ko-fi.com](https://az743702.vo.msecnd.net/cdn/btn1.png)](https://ko-fi.com?i=15867V22TVFEL)
 
 ## License
 
