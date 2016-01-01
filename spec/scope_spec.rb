@@ -8,6 +8,7 @@ describe Yapfac::Apache::Scope do
     @scope.add_directive Yapfac::Apache::Directive.parse("DocumentRoot /test")
     @scope.add_directive "Order", "allow,deny"
     @scope.add_scope Yapfac::Apache::Scope.new("Directory", "/test")
+    @scope.add_scope "Directory", "/other"
   end
 
   it { expect(@scope).to respond_to :scopes }
@@ -22,8 +23,11 @@ describe Yapfac::Apache::Scope do
   describe "#scopes" do
     subject { @scope.scopes }
     it { is_expected.to be_kind_of Array }
-    it { is_expected.to have_at_least(1).items }
+    it { is_expected.to have_at_least(2).items }
     it { expect(@scope.scopes.first.name).to eq "Directory" }
+    it { expect(@scope.scopes.last.name).to eq "Directory" }
+    it { expect(@scope.scopes.first.params).to include("/test") }
+    it { expect(@scope.scopes.last.params).to include("/other") }
   end
 
   describe "#directives" do
