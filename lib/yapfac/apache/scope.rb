@@ -46,7 +46,7 @@ class  Scope
     out = Array.new
     tab = @parent.nil? ? "" : "\t"
 
-    unless parent.nil?
+    unless self.kind_of? Yapfac::Apache::Site
       out << "<#{@name} #{@params.join(' ')}>"
     end
 
@@ -58,7 +58,7 @@ class  Scope
       out << @scopes.collect { |s| s.to_s.split("\n").collect { |v| v.prepend(tab) }.join("\n") }
     end
 
-    unless parent.nil?
+    unless self.kind_of? Yapfac::Apache::Site
       out << "</#{@name}>"
     end
 
