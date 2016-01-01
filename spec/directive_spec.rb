@@ -61,6 +61,11 @@ describe Yapfac::Apache::Directive do
       it { expect(subject.params.count).to eq 2 }
       it { expect(subject.params).to include("bar", "baz") }
     end
+
+    describe "#to_s" do
+      it { expect(subject.to_s).to be_kind_of String }
+      it { expect(subject.to_s).to eq "Foo bar baz" }
+    end
   end
 
 end

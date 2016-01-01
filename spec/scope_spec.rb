@@ -46,4 +46,10 @@ describe Yapfac::Apache::Scope do
     it { is_expected.to be_kind_of Hash }
     # TODO: Validate hash output.
   end
+
+  describe "#to_s" do
+    subject { @scope.to_s }
+    it { is_expected.to be_kind_of String }
+    # TODO: Validate string output.
+  end
 end
