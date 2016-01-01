@@ -89,7 +89,8 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/eiwi11
 ## Contact
 
 This gem is maintained by William Eisert [weisert@eisertdev.com](mailto:weisert@eisertdev.com).
-[![Buy me a coffee at ko-fi.com](https://az743702.vo.msecnd.net/cdn/btn1.png)](https://ko-fi.com?i=15867V22TVFEL)
+
+<a href='https://ko-fi.com?i=15867V22TVFEL' target='_blank'><img style='border:0px;width:140px;' src='https://az743702.vo.msecnd.net/cdn/btn1.png' border='0' alt='Buy me a coffee at ko-fi.com' width="150" /></a> 
 
 ## License
 
