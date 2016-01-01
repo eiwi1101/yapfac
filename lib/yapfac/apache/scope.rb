@@ -2,7 +2,8 @@ module Yapfac
 class  Apache
 class  Scope
 
-  attr_reader :name, :params, :parent
+  attr_reader :name, :params, :directives, :scopes
+  attr_accessor :parent
 
   def initialize(name = nil, params = nil, parent = nil)
     @name   = name
@@ -26,6 +27,7 @@ class  Scope
       raise "Scope can not be a child of itsself."
     end
 
+    scope.parent = self
     @scopes.push(scope)
   end
 
