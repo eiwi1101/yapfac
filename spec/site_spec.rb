@@ -10,6 +10,7 @@ describe Yapfac::Apache::Site do
 
     describe "#scopes" do
       it { expect(subject.scopes).to have_at_least(1).items }
+      it { expect(subject.scopes.first.name).to eq "VirtualHost" }
       
       describe "#first #directives" do
         it { expect(subject.scopes.first.directives).to have_at_least(1).items }
