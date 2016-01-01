@@ -54,17 +54,17 @@ describe Yapfac::Apache::Directive do
     end
   end
 
-  context "with params: bar, baz" do
-    subject { Yapfac::Apache::Directive.new("Foo", "bar", "baz") }
+  context "with params: bar, 'baz qux'" do
+    subject { Yapfac::Apache::Directive.new("Foo", "bar", "baz qux") }
 
     describe "#params" do
       it { expect(subject.params.count).to eq 2 }
-      it { expect(subject.params).to include("bar", "baz") }
+      it { expect(subject.params).to include("bar", "baz qux") }
     end
 
     describe "#to_s" do
       it { expect(subject.to_s).to be_kind_of String }
-      it { expect(subject.to_s).to eq "Foo bar baz" }
+      it { expect(subject.to_s).to eq "Foo bar \"baz qux\"" }
     end
   end
 
