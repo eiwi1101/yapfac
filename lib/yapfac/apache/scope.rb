@@ -22,13 +22,22 @@ class  Scope
     end
   end
 
-  def add_scope(scope)
-    if scope == self
-      raise "Scope can not be a child of itsself."
+  def add_scope(scope, *params)
+    if scope.kind_of? Yapfac::Apache::Scope
+      if scope == self
+        raise "Scope can not be a child of itsself."
+      end
+
+      scope.parent = self
+      @scopes.push(scope)
+    else
+      scope = Yapfac::Apache::Scope.new(scope, *params, self)
+      @scopes.push(scope)
     end
 
-    scope.parent = self
-    @scopes.push(scope)
+    if block_given?
+      yield scope
+    end
   end
 
   def to_h

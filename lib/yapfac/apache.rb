@@ -27,5 +27,11 @@ class Apache
     return Yapfac::Apache::Site.load(file)
   end
 
+  def self.new_site(site_name)
+    site = Yapfac::Apache::Site.new(site_name)
+    yield  site
+    return site
+  end
+
 end
 end
