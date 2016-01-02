@@ -2,8 +2,12 @@ module Yapfac
 class  Apache
 class  Scope
 
-  attr_reader :name, :params, :directives, :scopes
+  attr_reader :directives
+  attr_reader :scopes
+
   attr_accessor :parent
+  attr_accessor :name
+  attr_accessor :params
 
   def initialize(name = nil, params = nil, parent = nil)
     @name   = name

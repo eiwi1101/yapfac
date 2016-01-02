@@ -15,6 +15,14 @@ class  Site < Scope
     return s
   end
 
+  def filename
+    File.join(Yapfac.configuration.apache_path, Yapfac.configuration.sites_available_path, @name + '.conf')
+  end
+
+  def save
+    File.write(filename, to_s)
+  end
+
   def load_file(filename)
     lines = File.read(filename)
     lines.gsub!("\\\n", ' ')
