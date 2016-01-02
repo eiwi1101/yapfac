@@ -15,6 +15,10 @@ describe Yapfac::Apache::Scope do
   it { expect(@scope).to respond_to :params }
   it { expect(@scope).to respond_to :name }
   it { expect(@scope).to respond_to :directives }
+  it { expect(@scope).to respond_to :name= }
+  it { expect(@scope).to respond_to :params= }
+  it { expect(@scope).to_not respond_to :directives= }
+  it { expect(@scope).to_not respond_to :scopes= }
 
   context "when adding itsself as scope" do
     it { expect { @scope.add_scope @scope }.to raise_error RuntimeError }
