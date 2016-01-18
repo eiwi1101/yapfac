@@ -14,3 +14,5 @@ notifications:
     on_success: always # Change for quieter: 'change'
     on_failure: always
     on_start: never
+    
+  slack: eisertdev:RblCZ5BKH53jLFdS5yHYnOaO
