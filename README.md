@@ -1,11 +1,10 @@
 # YAPFAC: Yet Another Parser for Apache Configuration
 
-[![Join the chat at https://gitter.im/eiwi1101/yapfac](https://badges.gitter.im/eiwi1101/yapfac.svg)](https://gitter.im/eiwi1101/yapfac?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 [![Gem Version](https://badge.fury.io/rb/yapfac.svg)](https://badge.fury.io/rb/yapfac)
 [![Build Status](https://travis-ci.org/eiwi1101/yapfac.svg)](https://travis-ci.org/eiwi1101/yapfac)
 [![Code Climate](https://codeclimate.com/github/eiwi1101/yapfac/badges/gpa.svg)](https://codeclimate.com/github/eiwi1101/yapfac)
 [![Test Coverage](https://codeclimate.com/github/eiwi1101/yapfac/badges/coverage.svg)](https://codeclimate.com/github/eiwi1101/yapfac/coverage)
+[![Join the chat at https://gitter.im/eiwi1101/yapfac](https://badges.gitter.im/eiwi1101/yapfac.svg)](https://gitter.im/eiwi1101/yapfac?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 YAPFAC provides a parser to read and write Apache configuration files. YAPFAC also provides a secure RESTful API for doing this remotely, providing seamless controll of a number of Apache servers.
 
